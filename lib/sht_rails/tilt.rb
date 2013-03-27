@@ -15,13 +15,16 @@ module ShtRails
     def evaluate(scope, locals, &block)
       template_key = path_to_key scope
       
-      js_key = template_key.inspect.gsub('/', '.')
+      js_key = template_key.inspect
       
       <<-HandlebarsTemplate
   (function() { 
   #{namespace} || (#{namespace} = {});
   #{namespace}CachedShtTemplates || (#{namespace}CachedShtTemplates = {});
   #{namespace}CachedShtTemplates[#{js_key}] = Handlebars.compile(#{data.inspect});
+  
+  Handlebars.registerPartial('#{js_key}', #{data.inspect})
+  
   #{namespace}[#{js_key}] = function(object) {
     if (object == null){
       return #{ShtRails.template_namespace}CachedShtTemplates[#{js_key}];
