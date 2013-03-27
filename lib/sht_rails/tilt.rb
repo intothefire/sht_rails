@@ -25,7 +25,7 @@ module ShtRails
   #{namespace}CachedShtTemplates || (#{namespace}CachedShtTemplates = {});
   #{namespace}CachedShtTemplates[#{js_key}] = Handlebars.compile(#{data.inspect});
   
-  Handlebars.registerPartial('#{js_key}', #{data.inspect})
+  Handlebars.registerPartial(#{js_key}, #{data.inspect})
   
   #{namespace}[#{js_key}] = function(object) {
     if (object == null){
