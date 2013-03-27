@@ -33,7 +33,7 @@ module ShtRails
     def path_to_key(scope)
       path = scope.logical_path.to_s.split('/')
       path.last.gsub!(/^_/, '')
-      path.join('/')
+      path.join('.')
     end
   end
 end
