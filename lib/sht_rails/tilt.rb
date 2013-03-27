@@ -19,8 +19,7 @@ module ShtRails
       
       <<-HandlebarsTemplate
   (function() { 
-    
-    
+
   #{namespace} || (#{namespace} = {});
   #{namespace}CachedShtTemplates || (#{namespace}CachedShtTemplates = {});
   #{namespace}CachedShtTemplates[#{js_key}] = Handlebars.compile(#{data.inspect});
