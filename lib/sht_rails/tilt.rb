@@ -17,8 +17,6 @@ module ShtRails
       
       js_key = template_key.inspect.gsub('/', '.')
       
-      raise js_key.to_s
-      
       <<-HandlebarsTemplate
   (function() { 
   #{namespace} || (#{namespace} = {});
