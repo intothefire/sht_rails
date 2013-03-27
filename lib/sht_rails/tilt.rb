@@ -20,11 +20,12 @@ module ShtRails
       <<-HandlebarsTemplate
   (function() { 
 
+  var template_html = #{data.inspect};  
   #{namespace} || (#{namespace} = {});
   #{namespace}CachedShtTemplates || (#{namespace}CachedShtTemplates = {});
-  #{namespace}CachedShtTemplates[#{js_key}] = Handlebars.compile(#{data.inspect});
+  #{namespace}CachedShtTemplates[#{js_key}] = Handlebars.compile(template_html);
   
-  Handlebars.registerPartial(#{js_key}, #{data.inspect})
+  Handlebars.registerPartial(#{js_key}, template_html)
   
   #{namespace}[#{js_key}] = function(object) {
     if (object == null){
