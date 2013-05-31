@@ -12,6 +12,12 @@ module ShtRails
     hbs_context_for_sht.register_partial(key, value)
   end if defined?(partials) && partials.is_a?(Hash)
 
+  hbs_context_for_sht.register_helper('if_type') do |context, type, compare, block|
+    if type == compare
+      "#{block.fn(context)}"
+    end
+  end
+
   hbs_context_for_sht.compile(#{template.source.inspect}).call(#{ShtRails.action_view_key.to_s} || {}).html_safe
 SHT
       else
