@@ -11,17 +11,13 @@ module ShtRails
   partials.each do |key, value|
     hbs_context_for_sht.register_partial(key, value)
   end if defined?(partials) && partials.is_a?(Hash)
-  
-  helpers.each do |key, value|
-    hbs_context_for_sht.register_helper(key) do |context, condition, block|
-      if condition
-        "#{block.fn(context)}#{block.fn(context)}"
-      else
-        block.inverse(context)
-      end
+
+  hbs_context_for_sht.register_helper('if_type') do |context, type, compare, block|
+    if type == compare
+      "#{block.fn(context)}"
     end
-  end if defined?(helpers) && partials.is_a?(Hash)
-  
+  end
+
   hbs_context_for_sht.compile(#{template.source.inspect}).call(#{ShtRails.action_view_key.to_s} || {}).html_safe
 SHT
       else
